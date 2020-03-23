@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 配置SQL校验器 -->
+	<bean id="replaceVerify" class="org.xtframe.sql.verify.ReplaceVerify" scope="prototype" />
+	<bean id="checkVerify" class="org.xtframe.sql.verify.CheckVerify" scope="prototype" />
+	<bean id="presenceAddVerify" class="org.xtframe.sql.verify.PresenceAddVerify" scope="prototype" />
+	<bean id="preparedVerify" class="org.xtframe.sql.verify.PreparedVerify" scope="prototype" />
+	<bean id="sqlDataVerifyFactory" class="org.xtframe.sql.SqlVerifyFactory">
+		<property name="verifyMap">
+			<bean class="java.util.HashMap">
+				<constructor-arg>
+					<map>
+						<entry key="replace" value="replaceVerify" />
+						<entry key="check" value="checkVerify" />
+						<entry key="prepared" value="preparedVerify" />
+						<entry key="presence_add" value="presenceAddVerify" />
+					</map>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 配置页面自定义处理类 -->
+	<bean id="solrRefreshDataHandler" class="org.xtframe.service.web.impl.custom.SolrRefreshDataHandler"/>
+	<bean id="bookgetDataHandler" class="org.xtframe.service.web.impl.custom.BookgetDataHandler"/>
+	<bean id="searchdatasolrDataHandler" class="org.xtframe.service.web.impl.custom.SearchdatasolrDataHandler"/>
+	<bean id="searchlistDataHandler" class="org.xtframe.service.web.impl.custom.SearchlistDataHandler"/>
+	<bean id="goodslistsolrDataHandler" class="org.xtframe.service.web.impl.custom.GoodslistsolrDataHandler"/>
+	<bean id="solrSaveDataHandler" class="org.xtframe.service.web.impl.custom.SolrSaveDataHandler"/>
+	<bean id="receiptDataHandler" class="org.xtframe.service.web.impl.custom.ReceiptDataHandler"/>
+	<bean id="mainFrameDataHandler" class="org.xtframe.service.web.impl.custom.MainFrameDataHandler"/>
+	<bean id="weiXinPayDataHandler" class="org.xtframe.service.web.impl.custom.WeiXinPayDataHandler"/>
+	<bean id="goodsListDataHandler" class="org.xtframe.service.web.impl.custom.GoodsListDataHandler"/>
+	<bean id="rightOrderDataHandler" class="org.xtframe.service.web.impl.custom.RightOrderDataHandler"/>
+	<bean id="orderPayDataHandler" class="org.xtframe.service.web.impl.custom.OrderPayDataHandler"/>
+	<bean id="ensureOrderFindGoodsHandler" class="org.xtframe.service.web.impl.custom.EnsureOrderFindGoodsHandler"/>
+	<bean id="orderMenagerDataHandler" class="org.xtframe.service.web.impl.custom.OrderMenagerDataHandler"/>
+	<bean id="searchDataHandler" class="org.xtframe.service.web.impl.custom.SearchDataHandler"/>
+</beans>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 指定Web应用的默认编码集,相当于调用HttpServletRequest的setCharacterEncoding方法 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<!-- 该属性指定需要Struts 2处理的请求后缀，该属性的默认值是action，即所有匹配*.action的请求都由Struts2处理。
+	 如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（,）隔开。 -->
+	<constant name="struts.action.extension" value="do"/>
+	<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false"/>
+	<!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 默认的视图主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 配置文件上传最大值 -->
+	<constant name="struts.multipart.maxSize" value="10000000" />
+	<!-- 配置使用Spring管理Action -->
+	<constant name="struts.objectFactory" value="spring" />
+
+	<package name="server" namespace="/server" extends="struts-default">
+		<global-results>
+			<result name="message">/WEB-INF/page/message.jsp</result>
+		</global-results>
+		<!-- Ajax处理入口 -->
+		<action name="ajax" class="/ajaxDataServerAction">
+			<result name="json" type="stream">  
+				<param name="contentType">text/html;charset=UTF-8</param>  
+				<param name="inputName">json</param>  
+			</result>
+		</action>
+		<!-- Weixin处理入口 -->
+		<action name="weixin" class="/weixinDataServerAction"/>
+		<!-- Weixin认证跳转入口 -->
+		<action name="certification" class="/certificationServerAction">
+			<result name="error">/p100040.html?wx=${openid}</result>
+			<result name="success">/index.jsp${urlParame}</result>
+		</action>
+		<!-- 验证码图片 -->
+		<action name="rand" class="/createCodeImgAction">
+			<result name="image" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 图片上传 -->
+		<action name="imageUpload" class="/imageUploadAction" method="upload"/>
+		<!-- Web页面处理入口 -->
+		<action name="web" class="/webCoreAction">
+			<!-- <result name="error" type="freemarker">/WEB-INF/template/error.ftl</result> -->
+			<result name="error">/index.jsp</result>
+			<result name="success">/index.jsp</result>
+			<result name="success_ftl" type="freemarker">/WEB-INF/template/${templetPath}</result>
+			<result name="error_ftl" type="freemarker">/WEB-INF/template/${templetPath}</result>
+			<result name="success_jsp">/WEB-INF/page/${templetPath}</result>
+			<result name="error_jsp">/WEB-INF/page/${templetPath}</result>
+			<result name="success_json" type="stream">  
+				<param name="contentType">text/html;charset=UTF-8</param>  
+				<param name="inputName">json</param>  
+			</result>
+			<result name="error_json" type="stream">  
+				<param name="contentType">text/html;charset=UTF-8</param>  
+				<param name="inputName">json</param>  
+			</result>
+		</action>
+	</package>
+	
+</struts>

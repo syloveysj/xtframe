@@ -1,0 +1,177 @@
+.x-btn-default-small .x-btn-inner, 
+.x-btn-default-medium .x-btn-inner, 
+.x-btn-default-large .x-btn-inner, 
+.x-btn-default-toolbar-small .x-btn-inner, 
+.x-btn-default-toolbar-medium .x-btn-inner,
+.x-btn-default-toolbar-large .x-btn-inner, 
+.x-menu-item-text, 
+.x-tree-node-text,
+.x-html-editor-tb .x-font-select, 
+.x-panel-header-default, 
+.x-panel-header-text,
+.x-panel-header-text-default,
+.x-panel-header-default-framed, 
+.x-tip-header, 
+.x-tip-body, 
+.x-form-invalid-tip-body, 
+.x-tip-header-text, 
+.x-progress-text,
+.x-toolbar,
+.x-toolbar .x-form-item-label, 
+.x-toolbar .x-toolbar-text, 
+.x-window-header-text-default, 
+.x-tab-bar, 
+.x-tab button, 
+.x-grid-rowbody, 
+.x-grid-row .x-grid-cell, 
+.x-grid-group-title, 
+.x-grid-row-editor .x-form-field, 
+.x-grid-row-editor .x-form-display-field, 
+.x-form-invalid-under, 
+.x-fieldset-header, 
+.x-column-header, 
+.x-mask-msg div, 
+.x-btn-group-header-text-default-framed, 
+table.x-datepicker-inner a, 
+.x-monthpicker-item, 
+.x-dd-drag-ghost{font-size: 12px;}
+.x-column-header{text-shadow:0 0 0 rgba(255, 255, 255, 0.3);}
+
+.header { background: #7F99BE url(icons/layout-browser-hd-bg.gif) repeat-x center;}
+.header h1 {font-size: 16px;color: #fff;padding: 3px 10px;margin: 0px;font-family:"微软雅黑","黑体"}
+
+#checkCode{ float:left;}
+.x-form-code{width:73px;height:20px;vertical-align:middle;cursor:pointer; float:left; margin-left:7px;}
+
+.win{background: url(icons/menuPanel/ho2.gif) no-repeat !important;}
+.edit-win{background: url(icons/core/edit.gif) no-repeat !important;}
+
+.tabs{background-image: url(icons/menuPanel/bulletin_manager.gif) !important;}
+.manage{background-image: url(icons/menuPanel/admin.gif) !important;}
+.home{background-image: url(icons/home.gif) !important; }
+.icon-menu{background-image: url(icons/menuPanel/sys.gif) !important;}
+.icon-user {
+    background-image: url(icons/user.png) !important;
+}
+.icon-add {
+    background-image: url(icons/add.png) !important;
+}
+.icon-delete {
+    background-image: url(icons/delete.png) !important;
+}
+.x-ie6 .icon-user {
+    background-image: url(icons/user.gif) !important;
+}
+.x-ie6 .icon-add {
+    background-image: url(icons/add.gif) !important;
+}
+.x-ie6 .icon-delete {
+    background-image: url(icons/delete.gif) !important;
+}
+.icon-refresh{background-image: url(icons/core/refresh.gif) !important;}
+
+.icon-edit {
+    background-image: url(icons/fam/edit.gif) !important;
+}
+.icon-search {
+    background-image: url(icons/search.gif) !important;
+}
+.icon-editrole {
+    background-image: url(icons/fam/cog_edit.png) !important;
+}
+.icon-clear {
+    background-image: url(icons/fam/table_refresh.png) !important;
+}
+.icon-clone {
+    background-image: url(icons/menuPanel/article1.gif) !important;
+}
+.icon-save {
+    background-image: url(icons/save.gif) !important;
+}
+.icon-reset {
+    background-image: url(icons/fam/cross.gif) !important;
+}
+.icon-start {
+    background-image: url(icons/menuPanel/ho2.gif) !important;
+}
+.icon-usergray {
+    background-image: url(icons/fam/user_gray.png) !important;
+}
+.icon-usergraygray {
+    background-image: url(icons/fam/user_suit.png) !important;
+}
+.icon-upload {
+    background-image: url(icons/upload.jpg) !important;
+}
+.icon-download {
+    background-image: url(icons/download.jpg) !important;
+}
+.icon-changepwd {
+    background-image: url(icons/winicon/pass_edit.gif) !important;
+}
+.icon-grid {
+    background-image: url(icons/fam/grid.png) !important;
+}
+.icon-users {
+    background-image: url(icons/btn/users.png) !important;
+}
+.icon-userinfo {
+    background-image: url(icons/menuPanel/admin.gif) !important;
+}
+.icon-mail {
+    background-image: url(icons/flag/mail/mail.png) !important;
+}
+
+.icon-see {
+    background-image: url(icons/btn/eyes.png) !important;
+}
+.icon-look {
+    background-image: url(icons/btn/flow/view.png) !important;
+}
+.icon-startprocess {
+    background-image: url(icons/btn/flow/flow_start.png) !important;
+}
+.icon-setting {
+    background-image: url(icons/btn/setting.gif) !important;
+}
+
+/*
+* 菜单图标
+*/
+.menu-home {
+	background-image: url(icons/core/home.gif) !important;
+}
+.x-grid-tree-node-expanded .menu-home {
+	background-image: url(icons/core/home.gif) !important;
+}
+
+/*
+* 消息提示框
+*/
+.msg .x-box-mc {
+    font-size:14px;
+}
+#msg-div {
+    position:absolute;
+    left:35%;
+    top:10px;
+    width:300px;
+    z-index:20000;
+}
+#msg-div .msg {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #F6F6F6;
+    border: 2px solid #ccc;
+    margin-top: 2px;
+    padding: 10px 15px;
+    color: #555;
+}
+#msg-div .msg h3 {
+    margin: 0 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#msg-div .msg p {
+    margin: 0;
+}

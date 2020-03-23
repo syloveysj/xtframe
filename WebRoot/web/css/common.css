@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,div,p,a,span,input,label,ul,li{ padding:0; margin:0; font-family:"微软雅黑"; font-size:13px;}
+img,input{border:none;}
+ul,li{list-style:none;}
+a,a:hover{ text-decoration:none;}
+.clear{ clear:both;}
+.container {
+  margin-left: 0px;
+  margin-top: 0px;
+  width: auto;
+  padding: 20px 20px 0px 20px;
+}
+
+/*标签页*/
+.bg_toubu{ height:28px; border-bottom:#ccc 1px solid; padding:10px 20px;}
+.add{ width:123px; float:left;}
+.add a{ display:block; background:url(../images/add.jpg) no-repeat; width:123px; height:28px;}
+.add a:hover{ background:url(../images/addhover.jpg) no-repeat;}
+.sousuo{ float:right; width:220px; border:#ccc 1px solid; border-radius:12px; padding:4px 10px; height:auto; overflow:hidden;}
+.sousuo a{ float:right;}
+.bgtu{ padding:0px 12px; margin-top:20px;}
+
+/*表单*/
+.bdbd{ float:right;}
+.bdbd a{ float:left; width:50px; background:#4ebbff; height:28px; margin-left:6px; text-align:center; line-height:28px; color:#fff; font-size:14px;} 
+.bdbd a:hover{ background:#0396f2; color:#fff; text-decoration:none;}
+.bdbd a.t1{ background:#4da501;}
+.bdbd a.t1:hover{ background:#418b00;}
+
+.biaodan{ width:80%; margin:auto;}
+
+/*登录*/
+.ztbg{ background:url(../images/denglubg.jpg) repeat; height:100%; width:100%; overflow:hidden; padding-top:100px; position:fixed;}
+.dl_content{ width:920px; margin:auto;}
+.dl_logo{ margin-left:25px;}
+.dl_main{ background:url(../images/dldabg.png) no-repeat; height:420px; margin-top:25px; padding-top:45px;}
+.dlleft_tu{ padding-left:40px; float:left;}
+.dlright_zi{ float:left; width:300px; margin-left:47px; margin-top:22px; padding-top:15px;}
+.srk{ padding-top:8px;}
+.srk span{ display:block; font-size:15px; color:#fff; margin-top:10px;}
+.srk span.kk{ width:300px; height:30px; background:#fff;}
+.srk span.kk img{ width:17px; float:left; margin:6px 5px;}
+.srk span input{ display:block; width:273px; height:30px; line-height:30px;}
+
+.jizhu,.xiazai{ margin-top:20px;}
+.yhyh span{ float:left; color:#fff;}
+.yhyh span input{ display:block; margin-top:3px;}
+.yhyh span.nn{ margin-left:5px;}
+.jizhu a,.jizhu a:hover{ color:#fff;}
+.yy{ float:right;}
+.yy a{ background:none; text-decoration:underline;}
+.yy a:hover{ background:none;}
+.xiazai a{ background:url(../images/xiazai.png) no-repeat; height:17px; padding-left:22px; font-size:15px; color:#fff; text-decoration:underline;}
+.dianji{ width:250px; height:32px; margin:auto; margin-top:25px;}
+.dianji a{ float:left;}
+.dianji a.ye{ float:right;}
+.dl_foot{ text-align:center; color:#333;}
+
+/*顶部提交悬浮*/
+.tools-top{width:100%; background:#fff; height:45px; position:fixed; top:0; left:10px;box-shadow:#aaa 0px 0px 8px 0px;}

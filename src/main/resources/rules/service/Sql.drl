@@ -1,0 +1,42 @@
+package org.xtframe.drools.service
+
+import org.xtframe.drools.entity.SqlInfo;
+import org.xtframe.entity.Application;
+import org.xtframe.util.ApplicationConfigUtil;
+import org.xtframe.entity.User;
+import org.xtframe.entity.Role;
+
+rule "Not logged"
+when
+    $sqlInfo : SqlInfo(user == null, $status : status, $message : message, 
+    						$sqlID : sqlID, $user : user, $application : application)
+then
+    Role $role = $application.getRole("anonymous");
+    if($role!=null && $role.isInSQL($sqlID)){
+    	$sqlInfo.setStatus( SqlInfo.SUCCESS );
+    	$sqlInfo.setMessage( "Has anonymous user SQL execution permissions." );
+    } else {
+    	$sqlInfo.setStatus( SqlInfo.LOGIN_AGAIN );
+    	$sqlInfo.setMessage( "Not anonymous user SQL execute permissions." );
+    }
+end
+
+rule "Has landed"
+when
+    $sqlInfo : SqlInfo(user != null, $status : status, $message : message, 
+    						$sqlID : sqlID, $user : user, $application : application)
+then
+	if($user.isInSQL($sqlID) || $user.getUserInfo().getUserName().equals(ApplicationConfigUtil.getApplicationConfig().getConfig("superAdmin"))){
+		$sqlInfo.setStatus( SqlInfo.SUCCESS );
+    	$sqlInfo.setMessage( "With user SQL execute permissions." );
+	} else {
+		Role $role = $application.getRole("anonymous");
+	    if($role!=null && $role.isInSQL($sqlID)){
+	    	$sqlInfo.setStatus( SqlInfo.SUCCESS );
+	    	$sqlInfo.setMessage( "Anonymous user SQL execute permissions." );
+	    } else {
+	    	$sqlInfo.setStatus( SqlInfo.FAILURE );
+    		$sqlInfo.setMessage( "User SQL does not have execute permissions." );
+	    }
+	}
+end

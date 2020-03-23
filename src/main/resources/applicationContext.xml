@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:oscache="http://www.springmodules.org/schema/oscache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springmodules.org/schema/oscache http://www.springmodules.org/schema/cache/springmodules-oscache.xsd">
+           
+	<!-- 设置需要进行Spring注解扫描的类包 -->
+	<context:component-scan base-package="org.xtframe"/>
+	<!-- 使用AspectJ方式配置AOP -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<aop:config proxy-target-class="true" />
+	<!-- 系统所用数据库操作类 -->
+	<bean id="dataBase" class="org.xtframe.dao.impl.MysqlDataBaseImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--jbpm4.4工作流  -->
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">  
+		<property name="jbpmCfg" value="spring-jbpm4.cfg.xml" />  
+	</bean>
+	<bean id="processEngine" factory-bean="springHelper"  factory-method="createProcessEngine" />
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>
+		<property name="url" value="jdbc:mysql://192.168.1.202:3306/book_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true"/>
+		<property name="username" value="root"/>
+		<property name="password" value="123456"/>
+		<!-- 连接池启动时的初始值 -->
+		<property name="initialSize" value="1"/>
+		<!-- 连接池的最大值 -->
+		<property name="maxActive" value="10"/>
+		<!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 -->
+		<property name="maxIdle" value="2"/>
+		<!--  最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 -->
+		<property name="minIdle" value="1"/>
+		<property name="validationQuery" value="SELECT 1"/>     
+   		<property name="testOnBorrow" value="true"/>
+	</bean>
+	  
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=false
+				hibernate.format_sql=false
+			</value>
+		</property>
+		<property name="mappingLocations">  
+			<list>  
+				<value>classpath:jbpm.execution.hbm.xml</value>
+				<value>classpath:jbpm.history.hbm.xml</value>
+				<value>classpath:jbpm.identity.hbm.xml</value>
+				<value>classpath:jbpm.repository.hbm.xml</value>
+				<value>classpath:jbpm.task.hbm.xml</value>
+				<value>classpath:jbpm.task.hbm.xml</value>
+				
+				<value>classpath:/org/xtframe/domain/*.hbm.xml</value>
+			</list>  
+		</property>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<!-- 缓存配置 -->
+	<oscache:config configLocation="classpath:oscache.properties" id="cacheProvider" />
+	<oscache:annotations providerId="cacheProvider">
+		<oscache:caching id="caching" cronExpression="0 1 * * *" refreshPeriod="86400" />
+		<oscache:flushing id="flushing" />
+	</oscache:annotations>
+	
+	<bean id="cacheManager" class="org.springmodules.cache.provider.oscache.OsCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:oscache.properties" />
+    </bean>
+    
+    <!-- 扩展系统所用数据库操作类  开始 -->
+	<!-- 扩展系统所用数据库操作类  结束 -->
+</beans>

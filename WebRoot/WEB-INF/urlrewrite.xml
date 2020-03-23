@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+		"http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<urlrewrite>
+	<rule>
+        <from>^/index.html$</from>
+        <to type="forward">/server/web.do?pageId=XT100039</to>
+    </rule>
+    <rule>
+        <from>^/weixin/demo/pay.html$</from>
+        <to type="forward">/server/web.do?pageId=XT110001</to>
+    </rule>
+    <rule>
+        <from>^/weixin/demo/orderPay.html$</from>
+        <to type="forward">/server/web.do?pageId=XT110011</to>
+    </rule>
+    <rule>
+        <from>^/weixin/demo/payNotice.html$</from>
+        <to type="forward">/server/web.do?pageId=XT110002</to>
+    </rule>
+    <rule>
+        <from>^/web/frame/main.html?(.*)</from>
+        <to type="forward">/server/web.do?pageId=XT101057&amp;$1</to>
+    </rule>
+    <rule>
+        <from>^/p(\w+).html$</from>
+        <to type="forward">/server/web.do?pageId=XT$1</to>
+    </rule>
+    <rule>
+        <from>^/p(\w+).html?(.*)</from>
+        <to type="forward">/server/web.do?pageId=XT$1&amp;$2</to>
+    </rule>
+</urlrewrite>
